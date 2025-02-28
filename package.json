@@ -1,0 +1,32 @@
+{
+    "name": "youtube-thumbnail-combiner",
+    "version": "1.0.0",
+    "description": "Create YouTube thumbnails by combining three images with white delimiters",
+    "main": "main.js",
+    "scripts": {
+      "start": "electron .",
+      "build": "electron-builder"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+      "electron-builder": "^23.6.0",
+      "sharp": "^0.32.1"
+    },
+    "devDependencies": {
+      "electron": "^25.0.0"
+    },
+    "build": {
+      "appId": "com.example.youtube-thumbnail-combiner",
+      "productName": "YouTube Thumbnail Combiner",
+      "mac": {
+        "category": "public.app-category.graphics-design"
+      },
+      "win": {
+        "target": "nsis"
+      },
+      "linux": {
+        "target": "AppImage"
+      }
+    }
+  }

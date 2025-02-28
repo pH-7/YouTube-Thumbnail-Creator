@@ -1,0 +1,16 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-error.log
+pnpm-debug.log
+
+# Electron build artifacts
+/dist/
+/out/
+*.asar
+
+# Compiled files
+*.tsbuildinfo
+*.log
+*.pid
+*.seed
