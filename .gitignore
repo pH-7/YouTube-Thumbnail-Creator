@@ -14,3 +14,6 @@ pnpm-debug.log
 *.log
 *.pid
 *.seed
+
+# Metadata OS files
+.DS_Store
