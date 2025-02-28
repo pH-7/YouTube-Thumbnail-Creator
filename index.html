@@ -63,7 +63,6 @@
       display: flex;
       justify-content: space-between;
       margin: 30px 0;
-      position: relative;
     }
     
     .image-preview {
@@ -115,8 +114,6 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      transform: skew(0deg);
-      transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
     }
     
     .delimiter::before {
@@ -125,8 +122,8 @@
       top: 0;
       bottom: 0;
       left: 50%;
-      width: 100%;
-      background-color: currentColor;
+      width: 2px;
+      background-color: #ddd;
       transform: translateX(-50%);
     }
     
@@ -155,31 +152,16 @@
       box-sizing: border-box;
     }
     
-    .range-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .range-container input[type="range"] {
-      flex: 1;
-    }
-
-    .range-value {
-      width: 50px;
-      text-align: center;
-    }
-
     .result-container {
       margin-top: 30px;
       display: none;
       text-align: center;
     }
-
+    
     .result-container.active {
       display: block;
     }
-
+    
     .result-thumbnail {
       max-width: 100%;
       max-height: 400px;
@@ -240,39 +222,12 @@
       font-size: 14px;
       text-align: center;
     }
-    
-    .divider-color-preview {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      vertical-align: middle;
-      margin-left: 10px;
-    }
-    
-    .two-columns {
-      display: flex;
-      gap: 20px;
-    }
-    
-    .column {
-      flex: 1;
-    }
-    
-    .shadow-preview {
-      width: 100px;
-      height: 20px;
-      margin: 10px auto;
-      background-color: var(--divider-color, #ffffff);
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>YouTube Thumbnail Combiner</h1>
-    <p class="subtitle">Create YouTube thumbnails by combining three images with customizable dividers</p>
+    <p class="subtitle">Create YouTube thumbnails by combining three images with white delimiters</p>
     
     <div class="thumbnail-info">
       Output size: 1280×720 pixels (standard YouTube thumbnail size)
@@ -290,7 +245,7 @@
         </div>
       </div>
       
-      <div class="delimiter" id="delimiter1"></div>
+      <div class="delimiter"></div>
       
       <div class="image-preview" id="imagePreview2">
         <div class="placeholder">
@@ -299,7 +254,7 @@
         </div>
       </div>
       
-      <div class="delimiter" id="delimiter2"></div>
+      <div class="delimiter"></div>
       
       <div class="image-preview" id="imagePreview3">
         <div class="placeholder">
@@ -310,63 +265,10 @@
     </div>
     
     <div class="options-container">
-      <div class="two-columns">
-        <div class="column">
-          <div class="form-group">
-            <label for="delimiterWidth">Delimiter Width (pixels):</label>
-            <div class="range-container">
-              <input type="range" id="delimiterWidth" min="0" max="50" value="10" oninput="updateDelimiterPreview()">
-              <span class="range-value" id="delimiterWidthValue">10</span>
-            </div>
-            <div class="help-text">Width of the space between images</div>
-          </div>
-          
-          <div class="form-group">
-            <label for="tiltAngle">Divider Tilt Angle (degrees):</label>
-            <div class="range-container">
-              <input type="range" id="tiltAngle" min="-45" max="45" value="0" oninput="updateDelimiterPreview()">
-              <span class="range-value" id="tiltAngleValue">0</span>
-            </div>
-            <div class="help-text">Negative values tilt left, positive values tilt right</div>
-          </div>
-          
-          <div class="form-group">
-            <label for="dividerColor">Divider Color:</label>
-            <div style="display: flex; align-items: center;">
-              <input type="color" id="dividerColor" value="#ffffff" oninput="updateDelimiterPreview()">
-              <span class="divider-color-preview" id="dividerColorPreview"></span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="column">
-          <div class="form-group">
-            <label for="shadowEnabled">Shadow:</label>
-            <input type="checkbox" id="shadowEnabled" onchange="updateDelimiterPreview()">
-            <div class="help-text">Add shadow to dividers</div>
-          </div>
-          
-          <div class="form-group">
-            <label for="shadowBlur">Shadow Blur (pixels):</label>
-            <div class="range-container">
-              <input type="range" id="shadowBlur" min="0" max="20" value="5" oninput="updateDelimiterPreview()" disabled>
-              <span class="range-value" id="shadowBlurValue">5</span>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="shadowOpacity">Shadow Opacity:</label>
-            <div class="range-container">
-              <input type="range" id="shadowOpacity" min="0" max="100" value="50" oninput="updateDelimiterPreview()" disabled>
-              <span class="range-value" id="shadowOpacityValue">50%</span>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label>Shadow Preview:</label>
-            <div class="shadow-preview" id="shadowPreview" style="display: none;"></div>
-          </div>
-        </div>
+      <div class="form-group">
+        <label for="delimiterWidth">Delimiter Width (pixels):</label>
+        <input type="number" id="delimiterWidth" min="0" max="100" value="10">
+        <div class="help-text">Width of the white space between images</div>
       </div>
       
       <div class="form-group">
@@ -414,22 +316,7 @@
       document.getElementById('imagePreview2'),
       document.getElementById('imagePreview3')
     ];
-    const delimiters = [
-      document.getElementById('delimiter1'),
-      document.getElementById('delimiter2')
-    ];
     const delimiterWidthInput = document.getElementById('delimiterWidth');
-    const delimiterWidthValue = document.getElementById('delimiterWidthValue');
-    const tiltAngleInput = document.getElementById('tiltAngle');
-    const tiltAngleValue = document.getElementById('tiltAngleValue');
-    const dividerColorInput = document.getElementById('dividerColor');
-    const dividerColorPreview = document.getElementById('dividerColorPreview');
-    const shadowEnabledInput = document.getElementById('shadowEnabled');
-    const shadowBlurInput = document.getElementById('shadowBlur');
-    const shadowBlurValue = document.getElementById('shadowBlurValue');
-    const shadowOpacityInput = document.getElementById('shadowOpacity');
-    const shadowOpacityValue = document.getElementById('shadowOpacityValue');
-    const shadowPreview = document.getElementById('shadowPreview');
     const outputNameInput = document.getElementById('outputName');
     const resultContainer = document.getElementById('resultContainer');
     const resultThumbnail = document.getElementById('resultThumbnail');
@@ -439,47 +326,6 @@
     const errorEl = document.getElementById('error');
     const progressContainer = document.getElementById('progressContainer');
     const progressBarFill = document.getElementById('progressBarFill');
-    
-    // Update delimiter preview
-    function updateDelimiterPreview() {
-      const width = delimiterWidthInput.value;
-      const tiltAngle = tiltAngleInput.value;
-      const color = dividerColorInput.value;
-      const shadowEnabled = shadowEnabledInput.checked;
-      const shadowBlur = shadowBlurInput.value;
-      const shadowOpacity = shadowOpacityInput.value / 100;
-      
-      // Update displayed values
-      delimiterWidthValue.textContent = width;
-      tiltAngleValue.textContent = tiltAngle;
-      dividerColorPreview.style.backgroundColor = color;
-      shadowBlurValue.textContent = shadowBlur;
-      shadowOpacityValue.textContent = `${shadowOpacity * 100}%`;
-      
-      // Toggle shadow controls
-      shadowBlurInput.disabled = !shadowEnabled;
-      shadowOpacityInput.disabled = !shadowEnabled;
-      shadowPreview.style.display = shadowEnabled ? 'block' : 'none';
-      
-      // Update shadow preview
-      if (shadowEnabled) {
-        shadowPreview.style.boxShadow = `0px 0px ${shadowBlur}px rgba(0, 0, 0, ${shadowOpacity})`;
-        shadowPreview.style.backgroundColor = color;
-      }
-      
-      // Update delimiter styles
-      delimiters.forEach(delimiter => {
-        delimiter.style.width = `${width}px`;
-        delimiter.style.transform = `skew(${tiltAngle}deg)`;
-        delimiter.style.color = color;
-        
-        if (shadowEnabled) {
-          delimiter.style.boxShadow = `0px 0px ${shadowBlur}px rgba(0, 0, 0, ${shadowOpacity})`;
-        } else {
-          delimiter.style.boxShadow = 'none';
-        }
-      });
-    }
     
     // Update image previews
     function updateImagePreviews() {
@@ -513,12 +359,15 @@
       });
       
       // Enable/disable create button
-      createThumbnailBtn.disabled = selectedImagePaths.filter(Boolean).length !== 3;
+      createThumbnailBtn.disabled = selectedImagePaths.length !== 3;
     }
     
     // Remove image
     function removeImage(index) {
       selectedImagePaths[index] = null;
+      
+      // Clean up the array if it has empty slots
+      selectedImagePaths = selectedImagePaths.filter(path => path !== null);
       
       updateImagePreviews();
       statusEl.textContent = 'Image removed.';
@@ -568,18 +417,13 @@
         progressContainer.classList.add('active');
         progressBarFill.style.width = '30%';
         
-        // Get delimiter options
+        // Get delimiter width
         const delimiterWidth = parseInt(delimiterWidthInput.value) || 10;
-        const tiltAngle = parseInt(tiltAngleInput.value) || 0;
-        const dividerColor = dividerColorInput.value;
-        const shadowEnabled = shadowEnabledInput.checked;
-        const shadowBlur = parseInt(shadowBlurInput.value) || 5;
-        const shadowOpacity = shadowOpacityInput.value / 100;
         
         // Get output name
         const outputName = outputNameInput.value.trim();
         
-        // Filter out any null values
+        // Filter out any null values (shouldn't happen at this point)
         const validImagePaths = selectedImagePaths.filter(path => path);
         
         if (validImagePaths.length !== 3) {
@@ -592,11 +436,6 @@
         const result = await ipcRenderer.invoke('create-thumbnail', {
           imagePaths: validImagePaths,
           delimiterWidth,
-          tiltAngle,
-          dividerColor,
-          shadowEnabled,
-          shadowBlur,
-          shadowOpacity,
           outputName
         });
         
@@ -630,24 +469,15 @@
     
     // Start over
     startOverBtn.addEventListener('click', () => {
-      selectedImagePaths = selectedImagePaths.map(() => null);
+      selectedImagePaths = [];
       updateImagePreviews();
       resultContainer.classList.remove('active');
       statusEl.textContent = 'Ready to create a new thumbnail.';
       errorEl.textContent = '';
     });
     
-    // Initialize previews
-    updateDelimiterPreview();
+    // Initialize
     updateImagePreviews();
-    
-    // Shadow checkbox handler
-    shadowEnabledInput.addEventListener('change', () => {
-      const enabled = shadowEnabledInput.checked;
-      shadowBlurInput.disabled = !enabled;
-      shadowOpacityInput.disabled = !enabled;
-      shadowPreview.style.display = enabled ? 'block' : 'none';
-    });
   </script>
 </body>
 </html>
