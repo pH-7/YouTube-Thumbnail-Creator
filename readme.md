@@ -60,6 +60,9 @@ Make adjustments with immediate visual feedback.
 ## 🎥 Me building this app
 Check out my YouTube channel where I explain the process of building this app from scratch using Electron and Node.js: [YouTube Channel](https://www.youtube.com/@pH7Programming/videos)
 
+
+![Universal Style YouTube Thumbnail Creator - Splitter with 3 images](youtube-thumbnail-combiner.png)
+
 ## ⚖️ License
 
 This YouTube Thumbnail Creator is licensed under the MIT License.
