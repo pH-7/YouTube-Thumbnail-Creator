@@ -156,7 +156,7 @@ Check out my YouTube channel where I explain the process of building apps from s
 
 ## ⚖️ License
 
-This YouTube Thumbnail Creator is licensed under the MIT License.
+This YouTube Thumbnail Creator is licensed under the [MIT License](license.md).
 
 [x-icon]: https://img.shields.io/badge/x-000000?style=for-the-badge&logo=x
 [youtube-icon]: https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white
