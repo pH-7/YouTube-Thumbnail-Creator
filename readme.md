@@ -11,7 +11,7 @@ This app is ideal for any of your next multi-language YouTube vlogs, tutorials, 
 - [🪄 Features](#-features)
 - [🚀 App Store Publication](#-app-store-publication)
 - [👨‍🍳 Who is the baker?](#-who-baked-this)
-- [🎥 Me building this app](#-me-building-this-app)
+- [🎥 Me building this app](#-me-building-apps-like-this-one)
 - [⚖️ License](#%EF%B8%8F-license)
 
 ## ⚙️ Requirement
@@ -143,9 +143,10 @@ npm run mas
 
 ☕️ Are you enjoying it? **[Offer me a coffee](https://ko-fi.com/phenry)** (my favorite coffee to start the day is almond flat white 😋)
 
-[![@phenrysay][x-icon]](https://x.com/phenrysay) [![YouTube Tech Videos][youtube-icon]](https://www.youtube.com/@pH7Programming "My YouTube Tech Channel") [![pH-7][github-icon]](https://github.com/pH-7)
+[![@phenrysay][x-icon]](https://x.com/phenrysay "Follow Me on X") [![YouTube Tech Videos][youtube-icon]](https://www.youtube.com/@pH7Programming "My YouTube Tech Channel") [![pH-7][github-icon]](https://github.com/pH-7 "Follow Me on GitHub")
 
 ## 🎥 Me building apps like this one!
+
 Check out my YouTube channel where I explain the process of building apps from scratch like this one. [@pH7Programming](https://www.youtube.com/@pH7Programming/videos).
 
 
