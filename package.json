@@ -6,8 +6,6 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
     "mas": "electron-builder --mac mas --publish always",
     "mas-dev": "electron-builder --mac mas",
     "mas-package": "electron-builder --mac mas --publish never",
@@ -19,7 +17,6 @@
   "build": {
     "appId": "ph7.me.youtube-thumbnail-combiner",
     "productName": "YouTube Thumbnail Creator",
-    "extraResources": [],
     "files": [
       "**/*",
       "!node_modules/**/*",
@@ -39,12 +36,6 @@
       "target": [
         "mas"
       ]
-    },
-    "win": {
-      "target": "nsis"
-    },
-    "linux": {
-      "target": "AppImage"
     },
     "mas": {
       "entitlements": "build/entitlements.mac.plist",

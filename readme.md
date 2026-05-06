@@ -30,28 +30,20 @@ npm start # start the Electron app
 
 ## 🪄 Features
 ### Select Three Images
-```
 Choose any three images from your computer to combine into a professional YouTube thumbnail.
 Images will be automatically resized to fit the standard YouTube thumbnail dimensions (1280×720 pixels).
-```
 
 ### Customize Delimiters
-```
 Adjust delimiter width, color, and tilt angle to create unique separators between your images.
 Add optional shadows with customizable blur and opacity for a professional touch.
-```
 
 ### Easy Export
-```
 Save your thumbnails directly to a dedicated folder in your Pictures directory.
 Give custom names to your thumbnails or use auto-generated filenames with timestamps.
-```
 
 ### Preview in Real-Time
-```
 See exactly how your thumbnail will look before exporting.
 Make adjustments with immediate visual feedback.
-```
 
 ### Multi-Image Combination
 - Combine 2 or 3 images horizontally with clean white delimiters.
@@ -66,7 +58,7 @@ Make adjustments with immediate visual feedback.
 - Choose from None, Light, Medium, or Strong enhancement levels.
 
 ### YouTube Optimization
-- NEW! Optimize thumbnails specifically for YouTube with WebP format
+- Optimize thumbnails specifically for YouTube with WebP format
 - Reduces file size by 25-35% while maintaining high quality
 - Perfect for faster uploads and better viewer experience
 
@@ -90,22 +82,17 @@ Before starting the build process, you need:
 
 ### Environment Setup
 
-Set these environment variables before running the build script:
+Set the following environment variable before building (copy `.env.example` to `.env`):
 
 ```bash
-# Required environment variables for signing and notarization
-export APPLE_ID=your_apple_id@example.com
-export APPLE_ID_PASSWORD=your_app_specific_password
-export APPLE_TEAM_ID=your_team_id
+APPLE_TEAM_ID=your_team_id
 ```
-
-> **Note**: For the `APPLE_ID_PASSWORD`, use an app-specific password generated from your Apple ID account page rather than your main account password.
 
 ### Provisioning Profile
 
-Place your provisioning profile at this location:
+Place your provisioning profile at:
 ```
-/Users/pierre-henrysoria/Code/Thumbnail-Creator/build/embedded.provisionprofile
+build/embedded.provisionprofile
 ```
 
 ### Build Commands
@@ -125,8 +112,7 @@ npm run mas
 
 1. **Signing Issues**: Ensure your certificates are valid and installed in your keychain
 2. **Entitlements Errors**: Check that the entitlements files match your provisioning profile capabilities
-3. **Notarization Failures**: Verify your Apple ID and app-specific password are correct
-4. **Sharp Module Issues**: If image processing fails, try rebuilding the sharp module with:
+3. **Sharp Module Issues**: If image processing fails, try rebuilding the sharp module with:
    ```bash
    npm run rebuild-sharp
    ```
