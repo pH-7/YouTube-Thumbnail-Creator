@@ -62,9 +62,6 @@ fastlane/
 # App files
 app/
 
-# Scripts
-scripts/
-
 # Electron builder files
 electron-builder.yml
 

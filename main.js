@@ -10,9 +10,10 @@ function createWindow() {
         width: 1000,
         height: 800,
         webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-            enableRemoteModule: true
+            nodeIntegration: false,
+            contextIsolation: true,
+            sandbox: true,
+            preload: path.join(__dirname, 'preload.js')
         },
         title: 'YouTube Thumbnail Combiner'
     });
@@ -49,6 +50,11 @@ ipcMain.handle('select-images', async () => {
         console.error('Error in select-images:', error);
         throw error;
     }
+});
+
+// Handle opening the output folder in Finder/Explorer
+ipcMain.handle('open-output-folder', async (event, outputDir) => {
+    await shell.openPath(outputDir);
 });
 
 // Handle invidual image selection

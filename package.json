@@ -19,6 +19,12 @@
   "build": {
     "appId": "ph7.me.youtube-thumbnail-combiner",
     "productName": "YouTube Thumbnail Creator",
+    "extraResources": [],
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "node_modules/sharp/**/*"
+    ],
     "mac": {
       "category": "public.app-category.graphics-design",
       "icon": "build/mac/icon.icns",
@@ -48,8 +54,7 @@
       "provisioningProfile": "build/embedded.provisionprofile",
       "type": "distribution",
       "category": "public.app-category.graphics-design",
-      "artifactName": "${productName}-${version}.pkg",
-      "electronTeamId": "2V8LZ2444Y"
+      "artifactName": "${productName}-${version}.pkg"
     },
     "afterSign": "scripts/notarize.js"
   },

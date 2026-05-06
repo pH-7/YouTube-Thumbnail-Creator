@@ -633,7 +633,7 @@
   </div>
 
   <script>
-    const { ipcRenderer, shell } = require('electron');
+    const api = window.electronAPI;
 
     // Cache DOM elements
     const elements = {
@@ -872,7 +872,7 @@
         elements.statusEl.textContent = `Selecting image for position ${index + 1}...`;
 
         // Call a new IPC handler for single image selection
-        const imagePath = await ipcRenderer.invoke('select-single-image');
+        const imagePath = await api.selectSingleImage();
 
         if (imagePath) {
           // Update only the specific image slot
@@ -953,7 +953,7 @@
         elements.errorEl.textContent = '';
         elements.statusEl.textContent = 'Selecting images...';
 
-        const imagePaths = await ipcRenderer.invoke('select-images');
+        const imagePaths = await api.selectImages();
 
         if (imagePaths.length > 0) {
           // Take up to 3 images
@@ -1005,7 +1005,7 @@
         const layoutMode = elements.layoutMode.value;
         const youtubeOptimize = elements.youtubeOptimize.checked;
 
-        const result = await ipcRenderer.invoke('create-thumbnail', {
+        const result = await api.createThumbnail({
           imagePaths: validImagePaths,
           delimiterWidth,
           delimiterTilt,
@@ -1060,7 +1060,7 @@
 
     elements.openFolderBtn.addEventListener('click', () => {
       if (outputDir) {
-        shell.openPath(outputDir);
+        api.openOutputFolder(outputDir);
       }
     });
 
